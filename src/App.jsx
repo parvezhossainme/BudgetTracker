@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 // Lazy load components
 const Home = lazy(() => import('./components/Home'));
@@ -18,8 +18,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin-customer" element={<SignIn />} />
+          <Route path="/signin-seller" element={<SignIn />} />
+          <Route path="/signin-parvez" element={<SignIn />} />
           {/* Add other routes here */}
-          <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </Suspense>
       <Footer />

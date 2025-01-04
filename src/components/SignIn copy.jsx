@@ -1,8 +1,22 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React , {useEffect,useState} from 'react';
 import loginPic from '../assets/login_pic1.jpg';
 
-const SignIn = () => {
+const SignIn2 = () => {
+
+    const [email, setEmail] = useState('');
+
+    useEffect(() => {
+        fetch('http://localhost:8081/users')
+            .then(res => res.json())
+            .then(data => {
+                if (data.length > 0) {
+                    setEmail(data[0].Email); // Assuming you want to use the first user's email
+                }
+            })
+            .catch(err => console.error(err));
+    }, []);
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-white">
             <div className="flex items-center space-x-8">
@@ -15,7 +29,7 @@ const SignIn = () => {
                             <input
                                 type="email"
                                 className="w-full border-gray-300 rounded px-3 py-2"
-                                placeholder="Enter your email"
+                                placeholder={`Enter your email ${email}`}
                             />
                         </div>
                         <div>
@@ -57,4 +71,4 @@ const SignIn = () => {
     );
 };
 
-export default SignIn;
+export default SignIn2;

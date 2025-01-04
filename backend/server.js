@@ -59,7 +59,7 @@ app.post('/login', (req, res) => {
 
         if (results.length > 0) {
             const user = results[0];
-            return res.json({ success: true, role: user.Role , sellerID : user.UserID , username : user.Username , email: user.Email, password: user.PasswordHash });
+            return res.json({ success: true, role: user.Role , userID : user.UserID , username : user.Username , email: user.Email, password: user.PasswordHash });
         } else {
             return res.status(401).json({ success: false, message: 'Invalid email or password' });
         }

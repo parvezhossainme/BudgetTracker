@@ -2,74 +2,7 @@ import React, { useState,useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import SellerNavbar from "./SellerNavbar";
 import SellerFooter from "./SellerFooter";
-
-const Sidebar = ({ isCollapsed, toggleCollapse}) => {
-    const navigate = useNavigate();
-
-    const handleDashboardClick = () => {
-        navigate("/seller-home");
-    };
-    const handleLogout = () => {
-        navigate('/');
-    };
-
-    return (
-        <div
-            className={`bg-[#2E5077] text-white ${
-                isCollapsed ? "w-20" : "w-52"
-            } min-h-screen p-4 space-y-8 transition-all duration-300 flex flex-col items-center`}>
-            <button
-                onClick={toggleCollapse}
-                className="text-white mb-4 flex items-center justify-center">
-                <i
-                    className={`fas ${
-                        isCollapsed ? "fa-chevron-right" : "fa-chevron-left"
-                    } text-2xl`}></i>
-            </button>
-            <ul
-                className={`space-y-7 flex flex-col ${
-                    isCollapsed ? "items-center justify-center" : "items-start"
-                }`}>
-                <li
-                    className="flex items-center space-x-2"
-                    onClick={handleDashboardClick}>
-                    <i className="fas fa-home text-xl"></i>
-                    {!isCollapsed && <span>Dashboard</span>}
-                </li>
-                <li className="flex items-center space-x-2">
-                    <i className="fas fa-box text-xl"></i>
-                    {!isCollapsed && <span>Products</span>}
-                </li>
-                <li className="flex items-center space-x-2">
-                    <i className="fas fa-shopping-cart text-xl"></i>
-                    {!isCollapsed && <span>Orders</span>}
-                </li>
-                <li className="flex items-center space-x-2">
-                    <i className="fas fa-money-bill-wave text-xl"></i>
-                    {!isCollapsed && <span>Payments</span>}
-                </li>
-                <li className="flex items-center space-x-2">
-                    <i className="fas fa-envelope text-xl"></i>
-                    {!isCollapsed && <span>Messages</span>}
-                </li>
-                <li className="flex items-center space-x-2">
-                    <i className="fas fa-cog text-xl"></i>
-                    {!isCollapsed && <span>Settings</span>}
-                </li>
-                <li className="flex items-center space-x-2">
-                    <i className="fas fa-percentage text-xl"></i>
-                    {!isCollapsed && <span>Set Discounts</span>}
-                </li>
-            </ul>
-            <div className="mt-auto" onClick={handleLogout}>
-                <button className="flex items-center space-x-2 px-4 py-2 bg-gray-700 rounded text-white hover:bg-gray-600">
-                    <i className="fas fa-sign-out-alt text-xl"></i>
-                    {!isCollapsed && <span>Logout</span>}
-                </button>
-            </div>
-        </div>
-    );
-};
+import SellerSideBar from "./SellerSideBar.jsx";
 
 const Sell = () => {
     const sellerId = localStorage.getItem("sellerId") || "Unknown";
@@ -151,6 +84,76 @@ const NotificationsAlerts = () => (
     </div>
 );
 
+// const Sidebar = ({ isCollapsed, toggleCollapse}) => {
+//     const navigate = useNavigate();
+
+//     const handleDashboardClick = () => {
+//         navigate("/seller-home");
+//     };
+//     const handleLogout = () => {
+//         navigate('/');
+//     };
+
+//     const sideBtn = "flex items-center space-x-2 px-4 py-2 hover:bg-white hover:text-gray-800 px-4 py-2 rounded cursor-pointer w-full";
+
+//     return (
+//         <div
+//             className={`bg-[#2E5077] text-white ${
+//                 isCollapsed ? "w-20" : "w-52"
+//             } min-h-screen p-4 space-y-8 transition-all duration-300 flex flex-col items-center`}>
+//             <button
+//                 onClick={toggleCollapse}
+//                 className="text-white mb-4 flex items-center justify-center">
+//                 <i
+//                     className={`fas ${
+//                         isCollapsed ? "fa-chevron-right" : "fa-chevron-left"
+//                     } text-2xl`}></i>
+//             </button>
+//             <ul
+//                 className={`space-y-7 flex flex-col ${
+//                     isCollapsed ? "items-center justify-center" : "items-start"
+//                 }`}>
+//                 <li
+//                     className={sideBtn}
+//                     onClick={handleDashboardClick}>
+//                     <i className="fas fa-home text-xl"></i>
+//                     {!isCollapsed && <span>Dashboard</span>}
+//                 </li>
+//                 <li className={sideBtn}>
+//                     <i className="fas fa-box text-xl"></i>
+//                     {!isCollapsed && <span>Products</span>}
+//                 </li>
+//                 <li className={sideBtn}>
+//                     <i className="fas fa-shopping-cart text-xl"></i>
+//                     {!isCollapsed && <span>Orders</span>}
+//                 </li>
+//                 <li className={sideBtn}>
+//                     <i className="fas fa-money-bill-wave text-xl"></i>
+//                     {!isCollapsed && <span>Payments</span>}
+//                 </li>
+//                 <li className={sideBtn}>
+//                     <i className="fas fa-envelope text-xl"></i>
+//                     {!isCollapsed && <span>Messages</span>}
+//                 </li>
+//                 <li className={sideBtn}>
+//                     <i className="fas fa-cog text-xl"></i>
+//                     {!isCollapsed && <span>Settings</span>}
+//                 </li>
+//                 <li className={sideBtn}>
+//                     <i className="fas fa-percentage text-xl"></i>
+//                     {!isCollapsed && <span>Set Discounts</span>}
+//                 </li>
+//             </ul>
+//             <div className="mt-auto" onClick={handleLogout}>
+//                 <button className="flex items-center space-x-2 px-4 py-2 bg-gray-700 rounded text-white hover:bg-gray-600">
+//                     <i className="fas fa-sign-out-alt text-xl"></i>
+//                     {!isCollapsed && <span>Logout</span>}
+//                 </button>
+//             </div>
+//         </div>
+//     );
+// };
+
 
 const SellerHome = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -176,7 +179,7 @@ const SellerHome = () => {
         <>
             <SellerNavbar />
             <div className="flex">
-                <Sidebar
+                <SellerSideBar
                     isCollapsed={isCollapsed}
                     toggleCollapse={toggleCollapse}
                 />

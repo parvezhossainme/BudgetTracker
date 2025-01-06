@@ -10,4 +10,5 @@ To recommit new changes and push up to the remote repository:
 
 5. git subtree push --prefix dist origin gh-pages (2:20)
 
-if anyone has a quicker process please feel free to update this! but I found this the fastest way to push up to gh-pages.
+
+npm run build && git add dist -f && git commit -m "sidebar added show" && git subtree push --prefix dist origin gh-pages-4

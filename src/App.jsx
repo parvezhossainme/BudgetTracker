@@ -10,8 +10,9 @@ const SellerHome = lazy(() => import('./components/Seller/SellerHome.jsx'));
 const CustomerHome = lazy(() => import('./components/Customer/CustomerHome'));
 const SignAsParvez = lazy(() => import('./components/Admin/SignAsParvez.jsx'));
 const SignUp = lazy(() => import('./components/SignUp'));
+const SellerProfile = lazy(() => import('./components/Seller/SellerProfile'));
+const SellerAddProduct = lazy(() => import('./components/Seller/SellerAddProduct'));
 
-// Add other components here
 
 const App = () => {
   return (
@@ -26,6 +27,9 @@ const App = () => {
             <Route path="/seller-home" element={<SellerHome />} />
             <Route path="/customer-home" element={<CustomerHome />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/seller-profile" element={<SellerProfile />} />
+            <Route path="/seller-add-product" element={<SellerAddProduct />} />
+            
           </Routes>
         </Layout>
       </Suspense>

@@ -1,13 +1,11 @@
 import React from 'react';
 
 const SellerFooter = () => {
-    return (
-        <footer className="bg-purple-200 text-black shadow-lg p-4 mt-auto">
-            <div className="container mx-auto text-center">
-                <p>&copy; 2023 Seller Dashboard. All rights reserved.</p>
-            </div>
-        </footer>
-    );
+  return (
+    <footer className="bg-green-500 p-4 text-center text-white mt-auto">
+      <p>&copy; 2025 Budget Tracker. All rights reserved.</p>
+    </footer>
+  );
 };
 
 export default SellerFooter;

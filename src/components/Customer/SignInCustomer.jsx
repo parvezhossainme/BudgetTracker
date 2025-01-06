@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import loginPic from '../../assets/login_pic1.jpg';
+import loginPic from '../../assets/loginPage/login_pic1.jpg';
 import Modal from '../../myModals/Modal.jsx';
 
 const SignInCustomer = () => {

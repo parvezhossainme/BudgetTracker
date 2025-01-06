@@ -9,6 +9,7 @@ const SignInSeller = lazy(() => import('./components/Seller/SignInSeller.jsx'));
 const SellerHome = lazy(() => import('./components/Seller/SellerHome.jsx'));
 const CustomerHome = lazy(() => import('./components/Customer/CustomerHome'));
 const SignAsParvez = lazy(() => import('./components/Admin/SignAsParvez.jsx'));
+const SignUp = lazy(() => import('./components/SignUp'));
 
 // Add other components here
 
@@ -24,7 +25,7 @@ const App = () => {
             <Route path="/signin-parvez" element={<SignAsParvez />} />
             <Route path="/seller-home" element={<SellerHome />} />
             <Route path="/customer-home" element={<CustomerHome />} />
-            {/* Add other routes here */}
+            <Route path="/signup" element={<SignUp />} />
           </Routes>
         </Layout>
       </Suspense>
@@ -48,6 +49,7 @@ export default App;
 // const SellerHome = lazy(() => import('./components/Seller/SellerHome.jsx'));
 // const CustomerHome = lazy(() => import('./components/Customer/CustomerHome'));
 // const SignAsParvez = lazy(() => import('./components/Admin/SignAsParvez.jsx'));
+
 
 // // Add other components here
 

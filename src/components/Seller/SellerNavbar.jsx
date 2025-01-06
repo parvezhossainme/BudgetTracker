@@ -10,16 +10,24 @@ const SellerNavbar = () => {
     };
 
     return (
-        <nav className="bg-purple-200 text-black shadow-lg p-4">
+        <nav className="bg-green-500 text-white p-4 shadow-lg">
             <div className="container mx-auto flex justify-between items-center">
-                <h1 className="text-xl font-bold">Seller Dashboard</h1>
-                <div className="flex space-x-4">
-                    <Link to="/seller-home" className="hover:underline">Home</Link>
-                    <Link to="/seller-profile" className="hover:underline">Profile</Link>
-                    <Link to="/seller-products" className="hover:underline">Products</Link>
-                    <Link to="/seller-orders" className="hover:underline">Orders</Link>
-                    <button onClick={handleLogout} className="hover:underline text-red-600">Log Out</button>
+                <div className="flex items-center space-x-6">
+                    <h1 className="text-xl font-bold">Budget Tracker</h1>
+                    <div className="flex space-x-4">
+                        <Link to="/seller-home" className="hover:underline">Home</Link>
+                        <Link to="/seller-profile" className="hover:underline">Profile</Link>
+                        <Link to="/seller-products" className="hover:underline">Products</Link>
+                        <Link to="/seller-orders" className="hover:underline">Orders</Link>
+                        <Link to="/about" className="hover:underline">About</Link>
+                        <Link to="/contact" className="hover:underline">Contact</Link>
+                    </div>
                 </div>
+                <button 
+                    onClick={handleLogout} 
+                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded">
+                    Log Out
+                </button>
             </div>
         </nav>
     );

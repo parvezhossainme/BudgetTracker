@@ -2,7 +2,7 @@ import React from 'react';
 
 const SignAsParvez = () => {
   return (
-    <div id="container" className="container mx-auto p-4">
+    <div id="container" className="min-h-screen container mx-auto p-4">
       {/* FORM SECTION */}
       <div className="row flex flex-col md:flex-row">
         {/* SIGN UP */}

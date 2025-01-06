@@ -1,120 +1,204 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-
+import React, { useState,useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import SellerNavbar from "./SellerNavbar";
 import SellerFooter from "./SellerFooter";
 
-const Sell = () => {
-  const location = useLocation();
-  const { name, sellerId } = location.state || {
-    name: "Seller",
-    sellerId: "Unknown",
-  };
+const Sidebar = ({ isCollapsed, toggleCollapse}) => {
+    const navigate = useNavigate();
 
-  return (
-    <div className="container mx-auto p-6 bg-white shadow rounded-lg">
-      <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="bg-blue-100 p-6 rounded-lg shadow-lg">
-          <h2 className="text-lg font-semibold">Welcome, {name}</h2>
-          <p className="text-gray-600">Seller ID: {sellerId}</p>
+    const handleDashboardClick = () => {
+        navigate("/seller-home");
+    };
+    const handleLogout = () => {
+        navigate('/');
+    };
+
+    return (
+        <div
+            className={`bg-[#2E5077] text-white ${
+                isCollapsed ? "w-20" : "w-52"
+            } min-h-screen p-4 space-y-8 transition-all duration-300 flex flex-col items-center`}>
+            <button
+                onClick={toggleCollapse}
+                className="text-white mb-4 flex items-center justify-center">
+                <i
+                    className={`fas ${
+                        isCollapsed ? "fa-chevron-right" : "fa-chevron-left"
+                    } text-2xl`}></i>
+            </button>
+            <ul
+                className={`space-y-7 flex flex-col ${
+                    isCollapsed ? "items-center justify-center" : "items-start"
+                }`}>
+                <li
+                    className="flex items-center space-x-2"
+                    onClick={handleDashboardClick}>
+                    <i className="fas fa-home text-xl"></i>
+                    {!isCollapsed && <span>Dashboard</span>}
+                </li>
+                <li className="flex items-center space-x-2">
+                    <i className="fas fa-box text-xl"></i>
+                    {!isCollapsed && <span>Products</span>}
+                </li>
+                <li className="flex items-center space-x-2">
+                    <i className="fas fa-shopping-cart text-xl"></i>
+                    {!isCollapsed && <span>Orders</span>}
+                </li>
+                <li className="flex items-center space-x-2">
+                    <i className="fas fa-money-bill-wave text-xl"></i>
+                    {!isCollapsed && <span>Payments</span>}
+                </li>
+                <li className="flex items-center space-x-2">
+                    <i className="fas fa-envelope text-xl"></i>
+                    {!isCollapsed && <span>Messages</span>}
+                </li>
+                <li className="flex items-center space-x-2">
+                    <i className="fas fa-cog text-xl"></i>
+                    {!isCollapsed && <span>Settings</span>}
+                </li>
+                <li className="flex items-center space-x-2">
+                    <i className="fas fa-percentage text-xl"></i>
+                    {!isCollapsed && <span>Set Discounts</span>}
+                </li>
+            </ul>
+            <div className="mt-auto" onClick={handleLogout}>
+                <button className="flex items-center space-x-2 px-4 py-2 bg-gray-700 rounded text-white hover:bg-gray-600">
+                    <i className="fas fa-sign-out-alt text-xl"></i>
+                    {!isCollapsed && <span>Logout</span>}
+                </button>
+            </div>
         </div>
-        <div className="bg-green-100 p-6 rounded-lg shadow-lg">
-          <h2 className="text-lg font-semibold">Total Sales</h2>
-          <p className="text-gray-600">$5000</p>
+    );
+};
+
+const Sell = () => {
+    const sellerId = localStorage.getItem("sellerId") || "Unknown";
+    const name = localStorage.getItem("name") || "Seller";
+
+    return (
+        <div className="p-6 bg-white shadow rounded-lg">
+            <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-blue-100 p-6 rounded-lg shadow-lg">
+                    <h2 className="text-lg font-semibold">Welcome, {name}</h2>
+                    <p className="text-gray-600">Seller ID: {sellerId}</p>
+                </div>
+                <div className="bg-green-100 p-6 rounded-lg shadow-lg">
+                    <h2 className="text-lg font-semibold">Total Sales</h2>
+                    <p className="text-gray-600">$5000</p>
+                </div>
+                <div className="bg-yellow-100 p-6 rounded-lg shadow-lg">
+                    <h2 className="text-lg font-semibold">Pending Orders</h2>
+                    <p className="text-gray-600">12</p>
+                </div>
+                <div className="bg-red-100 p-6 rounded-lg shadow-lg">
+                    <h2 className="text-lg font-semibold">Low Stock Products</h2>
+                    <p className="text-gray-600">5</p>
+                </div>
+                <div className="bg-purple-100 p-6 rounded-lg shadow-lg">
+                    <h2 className="text-lg font-semibold">Messages</h2>
+                    <p className="text-gray-600">3 New</p>
+                </div>
+                <div className="bg-teal-100 p-6 rounded-lg shadow-lg">
+                    <h2 className="text-lg font-semibold">Current Discounts</h2>
+                    <p className="text-gray-600">20% on selected items</p>
+                </div>
+            </div>
         </div>
-        <div className="bg-yellow-100 p-6 rounded-lg shadow-lg">
-          <h2 className="text-lg font-semibold">Pending Orders</h2>
-          <p className="text-gray-600">12</p>
-        </div>
-        <div className="bg-red-100 p-6 rounded-lg shadow-lg">
-          <h2 className="text-lg font-semibold">Low Stock Products</h2>
-          <p className="text-gray-600">5</p>
-        </div>
-        <div className="bg-purple-100 p-6 rounded-lg shadow-lg">
-          <h2 className="text-lg font-semibold">Messages</h2>
-          <p className="text-gray-600">3 New</p>
-        </div>
-        <div className="bg-teal-100 p-6 rounded-lg shadow-lg">
-          <h2 className="text-lg font-semibold">Current Discounts</h2>
-          <p className="text-gray-600">20% on selected items</p>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 const ProductsLowStock = () => (
-  <div className="bg-white p-6 rounded-lg shadow-lg">
-    <h2 className="text-xl font-bold mb-4">Products (LOW STOCK)</h2>
-    <ul className="space-y-2">
-      <li>Product 1</li>
-      <li>Product 2</li>
-      <li>Product 3</li>
-    </ul>
-  </div>
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+        <h2 className="text-xl font-bold mb-4">Products (LOW STOCK)</h2>
+        <ul className="space-y-2">
+            <li>Product 1</li>
+            <li>Product 2</li>
+            <li>Product 3</li>
+        </ul>
+    </div>
 );
 
 const TopSellingProducts = () => (
-  <div className="bg-white p-6 rounded-lg shadow-lg">
-    <h2 className="text-xl font-bold mb-4">Top Selling Products</h2>
-    <ul className="space-y-2">
-      <li>Product A</li>
-      <li>Product B</li>
-      <li>Product C</li>
-    </ul>
-  </div>
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+        <h2 className="text-xl font-bold mb-4">Top Selling Products</h2>
+        <ul className="space-y-2">
+            <li>Product A</li>
+            <li>Product B</li>
+            <li>Product C</li>
+        </ul>
+    </div>
 );
 
 const CurrentDiscounts = () => (
-  <div className="bg-white p-6 rounded-lg shadow-lg">
-    <h2 className="text-xl font-bold mb-4">Current Discounts</h2>
-    <ul className="space-y-2">
-      <li>Discount 1: 10% off</li>
-      <li>Discount 2: 15% off</li>
-      <li>Discount 3: 20% off</li>
-    </ul>
-  </div>
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+        <h2 className="text-xl font-bold mb-4">Current Discounts</h2>
+        <ul className="space-y-2">
+            <li>Discount 1: 10% off</li>
+            <li>Discount 2: 15% off</li>
+            <li>Discount 3: 20% off</li>
+        </ul>
+    </div>
 );
 
 const NotificationsAlerts = () => (
-  <div className="bg-white p-6 rounded-lg shadow-lg">
-    <h2 className="text-xl font-bold mb-4">Notifications & Alerts</h2>
-    <ul className="space-y-2">
-      <li>Mst. Ayesha has sent urgent messages!</li>
-      <li>Customer XYZ gives a review on Product ABC.</li>
-    </ul>
-  </div>
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+        <h2 className="text-xl font-bold mb-4">Notifications & Alerts</h2>
+        <ul className="space-y-2">
+            <li>Mst. Ayesha has sent urgent messages!</li>
+            <li>Customer XYZ gives a review on Product ABC.</li>
+        </ul>
+    </div>
 );
 
-const SellerHome = () => {
-  const location = useLocation();
-  console.log("Location state:", location.state); // Debugging line
-  const { name, sellerId } = location.state || {
-    name: "Seller",
-    sellerId: "Unknown",
-  }; // Default values if not provided
 
-  return (
-    <>
-      <SellerNavbar />
-      <div className="flex flex-col min-h-screen bg-gray-100 p-8">
-        <Sell />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-          <div className="space-y-8">
-            <ProductsLowStock />
-            <CurrentDiscounts />
-          </div>
-          <div className="space-y-8">
-            <TopSellingProducts />
-          </div>
-        </div>
-        <div className="space-y-8 mt-8">
-            <NotificationsAlerts />
-        </div>
-      </div>
-      <SellerFooter />
-    </>
-  );
+const SellerHome = () => {
+    const [isCollapsed, setIsCollapsed] = useState(false);
+    const toggleCollapse = () => setIsCollapsed(!isCollapsed);
+
+    const location = useLocation();
+    const locationState = location.state || {};
+    const { sellerId: locationSellerId, name: locationName } = locationState;
+
+    useEffect(() => {
+        if (locationSellerId && locationName) {
+            localStorage.setItem("sellerId", locationSellerId);
+            localStorage.setItem("name", locationName);
+        }
+    }, [locationSellerId, locationName]);
+
+    const sellerId = localStorage.getItem("sellerId") || "Unknown";
+    const name = localStorage.getItem("name") || "Seller";
+
+    console.log("SellerHome received:", { sellerId, name }); // Debugging line
+
+    return (
+        <>
+            <SellerNavbar />
+            <div className="flex">
+                <Sidebar
+                    isCollapsed={isCollapsed}
+                    toggleCollapse={toggleCollapse}
+                />
+                <div className="flex-1 flex flex-col min-h-screen bg-gray-100 p-8">
+                    <Sell />
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+                        <div className="space-y-8">
+                            <ProductsLowStock />
+                            <CurrentDiscounts />
+                        </div>
+                        <div className="space-y-8">
+                            <TopSellingProducts />
+                        </div>
+                    </div>
+                    <div className="space-y-8 mt-8">
+                        <NotificationsAlerts />
+                    </div>
+                </div>
+            </div>
+            <SellerFooter />
+        </>
+    );
 };
+
 export default SellerHome;

@@ -5,7 +5,6 @@ const CustomerNavbar = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Perform any logout logic here, such as clearing authentication tokens
         navigate('/');
     };
 

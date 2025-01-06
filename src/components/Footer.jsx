@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="bg-[#4DA1A9] text-white py-6 bottom-full">
             <div className="container mx-auto px-4 flex justify-between items-center">
-                <p className="text-sm">&copy; 2023 Budget Tracker. All rights reserved.</p>
+                <p className="text-sm">&copy; 2025 Budget Tracker. All rights reserved.</p>
                 <div className="flex space-x-4">
                     <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-200 transition duration-300">
                         <i className="fab fa-discord text-xl"></i>

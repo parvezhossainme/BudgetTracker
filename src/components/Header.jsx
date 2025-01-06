@@ -38,8 +38,8 @@ const Header = () => {
     return (
         <header className="bg-[#79D7BE] text-black shadow-lg">
             <div className="container mx-auto px-6 py-5 flex justify-between items-center space-x-4">
-                <h1 className="text-2xl font-bold tracking-wide">
-                    BUDGET TRACKER
+                <h1 className="text-2xl font-bold tracking-wide ml-20 ">
+                    BUDGET TRACKER                   
                 </h1>
                 <nav className="flex items-center space-x-6">
                     <Link

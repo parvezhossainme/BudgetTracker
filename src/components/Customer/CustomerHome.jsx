@@ -1,163 +1,85 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import CustomerSideBar from "./CustomerSideBar";
 
 const CustomerHome = () => {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <div className="flex-grow">
-        <section
-          className="py-16 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/background-pattern.jpg')" }}>
-          <div className="container mx-auto text-center">
-            <h1 className="text-4xl font-bold text-white">
-              Welcome to FoodMart
-            </h1>
-            <p className="text-white mt-4">
-              Find the best groceries and fresh products at unbeatable prices.
-            </p>
-            <a
-              href="#"
-              className="mt-6 inline-block bg-yellow-500 text-white px-6 py-3 rounded-lg text-lg">
-              Shop Now
-            </a>
-          </div>
-        </section>
+    const [isCollapsed, setIsCollapsed] = useState(false);
+    const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
-        {/* Category Section */}
-        <section className="py-16">
-          <div className="container mx-auto">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-3xl font-bold">Categories</h2>
-              <a href="#" className="text-yellow-500">
-                View All Categories →
-              </a>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                "Fruits & Vegetables",
-                "Breads & Sweets",
-                "Drinks",
-                "Chocolates",
-              ].map((category, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-100 p-6 rounded-lg text-center">
-                  <img
-                    src={`/images/icon-${index + 1}.png`}
-                    alt={category}
-                    className="h-16 mx-auto mb-4"
-                  />
-                  <h3 className="text-lg font-bold">{category}</h3>
+    const location = useLocation();
+    const locationState = location.state || {};
+    const { customerId: locationCustomerId, name: locationName } = locationState;
+
+    useEffect(() => {
+        if (locationCustomerId && locationName) {
+            localStorage.setItem("customerId", locationCustomerId);
+            localStorage.setItem("name", locationName);
+        }
+    }, [locationCustomerId, locationName]);
+
+    const customerId = localStorage.getItem("customerId") || "Unknown";
+    const name = localStorage.getItem("name") || "Customer";
+
+    return (
+        <>
+            <div className="flex">
+                <CustomerSideBar
+                    isCollapsed={isCollapsed}
+                    toggleCollapse={toggleCollapse}
+                    customerId={customerId}
+                    name={name}
+                />
+                <div className="flex-1 flex flex-col min-h-screen bg-gradient-to-r from-blue-100 to-blue-200 p-8">
+                    <div className="p-6 bg-white shadow-lg rounded-lg transform transition duration-500">
+                        <h1 className="text-4xl font-extrabold mb-6 text-gray-800 animate-fadeInDown">
+                            Welcome, {name}
+                        </h1>
+                        <p className="text-gray-600">Customer ID: {customerId}</p>
+                    </div>
+                    <CustomerHomeOffers />
                 </div>
-              ))}
             </div>
+        </>
+    );
+};
+
+const CustomerHomeOffers = () => {
+  return (
+      <div className="p-8  min-h-screen">
+          <div className="grid grid-cols-3 gap-8">
+              {/* News & Updates Section */}
+              <div className="col-span-2">
+                  <h2 className="text-2xl font-bold mb-4 text-gray-800">News & Updates</h2>
+                  <div className="bg-gradient-to-r from-pink-500 to-red-500 rounded-lg h-48 flex items-center justify-center shadow-xl transform transition-transform hover:scale-105 hover:shadow-2xl">
+                      <span className="text-white text-3xl font-bold animate-pulse">Image Here</span>
+                  </div>
+              </div>
+              {/* Sponsor Section */}
+              <div className="flex items-center justify-center mt-8 w-full">
+                  <div className="bg-white rounded-lg p-8 flex items-center w-full justify-center flex-col shadow-xl transform transition-transform hover:scale-105 hover:shadow-2xl">
+                      <div className="bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full w-20 h-20 flex items-center justify-center animate-bounce">
+                          <span className="text-white text-3xl font-bold">$</span>
+                      </div>
+                      <p className="text-xl font-bold mt-4 text-gray-700">SPONSOR</p>
+                  </div>
+              </div>
           </div>
-        </section>
+
+          <h2 className="text-2xl font-bold mt-12 mb-4 text-gray-800">Special Offers & Discount</h2>
+          <div className="grid grid-cols-3 gap-4">
+              {["Offer 1", "Offer 2", "Offer 3"].map((offer, index) => (
+                  <div
+                      key={index}
+                      className={`bg-gradient-to-r ${
+                          index % 2 === 0 ? "from-blue-500 to-teal-500" : "from-yellow-500 to-orange-500"
+                      } rounded-lg h-48 flex items-center justify-center shadow-xl transform transition-transform hover:scale-105 hover:shadow-2xl`}
+                  >
+                      <span className={`text-white text-3xl font-bold`}>{offer}</span>
+                  </div>
+              ))}
+          </div>
       </div>
-    </div>
   );
 };
 
 export default CustomerHome;
-
-// import React from 'react';
-
-// const CustomerHome = () => {
-//   return (
-//     <div>
-//       {/* Header Section */}
-//       <header className="bg-white shadow-md py-4">
-//         <div className="container mx-auto flex justify-between items-center">
-//           <div className="logo">
-//             <a href="/">
-//               <img src="/images/logo.png" alt="logo" className="h-12" />
-//             </a>
-//           </div>
-//           <div className="search-bar hidden lg:flex items-center bg-gray-100 rounded-lg px-4 py-2">
-//             <select className="bg-transparent border-none text-gray-600 focus:outline-none">
-//               <option>All Categories</option>
-//               <option>Groceries</option>
-//               <option>Drinks</option>
-//               <option>Chocolates</option>
-//             </select>
-//             <input
-//               type="text"
-//               className="bg-transparent border-none ml-4 focus:outline-none w-full"
-//               placeholder="Search for more than 20,000 products"
-//             />
-//             <button className="text-gray-600">
-//               <svg
-//                 xmlns="http://www.w3.org/2000/svg"
-//                 className="h-6 w-6"
-//                 fill="none"
-//                 viewBox="0 0 24 24"
-//                 stroke="currentColor"
-//               >
-//                 <path
-//                   strokeLinecap="round"
-//                   strokeLinejoin="round"
-//                   strokeWidth="2"
-//                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-//                 />
-//               </svg>
-//             </button>
-//           </div>
-//           <div className="flex items-center space-x-4">
-//             <div className="support hidden xl:block text-right">
-//               <span className="text-sm text-gray-500">For Support?</span>
-//               <h5 className="font-bold">+980-34984089</h5>
-//             </div>
-//             <div className="flex items-center space-x-4">
-//               <a href="#" className="rounded-full bg-gray-100 p-2">
-//                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5.121 18.364A9 9 0 1118.364 5.121 9 9 0 015.121 18.364z" />
-//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 12v.01" />
-//                 </svg>
-//               </a>
-//               <a href="#" className="rounded-full bg-gray-100 p-2">
-//                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-//                 </svg>
-//               </a>
-//             </div>
-//           </div>
-//         </div>
-//       </header>
-
-//       {/* Banner Section */}
-//       <section className="py-16 bg-cover bg-center" style={{ backgroundImage: "url('/images/background-pattern.jpg')" }}>
-//         <div className="container mx-auto text-center">
-//           <h1 className="text-4xl font-bold text-white">Welcome to FoodMart</h1>
-//           <p className="text-white mt-4">Find the best groceries and fresh products at unbeatable prices.</p>
-//           <a href="#" className="mt-6 inline-block bg-yellow-500 text-white px-6 py-3 rounded-lg text-lg">Shop Now</a>
-//         </div>
-//       </section>
-
-//       {/* Category Section */}
-//       <section className="py-16">
-//         <div className="container mx-auto">
-//           <div className="flex justify-between items-center mb-8">
-//             <h2 className="text-3xl font-bold">Categories</h2>
-//             <a href="#" className="text-yellow-500">View All Categories →</a>
-//           </div>
-//           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-//             {['Fruits & Vegetables', 'Breads & Sweets', 'Drinks', 'Chocolates'].map((category, index) => (
-//               <div key={index} className="bg-gray-100 p-6 rounded-lg text-center">
-//                 <img src={`/images/icon-${index + 1}.png`} alt={category} className="h-16 mx-auto mb-4" />
-//                 <h3 className="text-lg font-bold">{category}</h3>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Footer Section */}
-//       <footer className="bg-gray-800 py-8">
-//         <div className="container mx-auto text-center text-white">
-//           <p>&copy; 2025 FoodMart. All rights reserved.</p>
-//         </div>
-//       </footer>
-//     </div>
-//   );
-// };
-
-// export default CustomerHome;

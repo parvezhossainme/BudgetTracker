@@ -27,7 +27,7 @@ const SellerContact = lazy(() => import('./components/Seller/SellerContact'));
 const CustomerProfile = lazy(() => import('./components/Customer/CustomerProfile'));
 const CustomerShop = lazy(() => import('./components/Customer/CustomerShop'));
 const CustomerDue = lazy(() => import('./components/Customer/CustomerDue'));
-
+const CustomerStatement = lazy(() => import('./components/Customer/CustomerStatement'));
 
 
 const SellerModifyProduct = lazy(() => import('./components/Seller/SellerModifyProduct'));  
@@ -58,10 +58,12 @@ const App = () => {
             <Route path="/seller-riders" element={<SellerRiders />} />
             <Route path="/seller-contact" element={<SellerContact />} />
 
+
             <Route path="/customer-home" element={<CustomerHome />} />
             <Route path="/customer-profile" element={<CustomerProfile />} />
             <Route path="/customer-shop" element={<CustomerShop />} />
             <Route path="/customer-due" element={<CustomerDue />} />
+            <Route path='/customer-statement' element={<CustomerStatement />} />
             {/* <Route path="/customer-favourite-shops" element={<CustomerFavouriteShops />} /> */}
 
           </Routes>

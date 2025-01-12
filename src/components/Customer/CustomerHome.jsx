@@ -8,17 +8,17 @@ const CustomerHome = () => {
 
     const location = useLocation();
     const locationState = location.state || {};
-    const { customerId: locationCustomerId, name: locationName } = locationState;
+    const { customerID: locationcustomerID, name: locationcustomerName } = locationState;
 
     useEffect(() => {
-        if (locationCustomerId && locationName) {
-            localStorage.setItem("customerId", locationCustomerId);
-            localStorage.setItem("name", locationName);
+        if (locationcustomerID && locationcustomerName) {
+            localStorage.setItem("customerID", locationcustomerID);
+            localStorage.setItem("customerName", locationcustomerName);
         }
-    }, [locationCustomerId, locationName]);
+    }, [locationcustomerID, locationcustomerName]);
 
-    const customerId = localStorage.getItem("customerId") || "Unknown";
-    const name = localStorage.getItem("name") || "Customer";
+    const customerID = localStorage.getItem("customerID") || "Unknown";
+    const customerName = localStorage.getItem("customerName") || "Customer";
 
     return (
         <>
@@ -26,15 +26,15 @@ const CustomerHome = () => {
                 <CustomerSideBar
                     isCollapsed={isCollapsed}
                     toggleCollapse={toggleCollapse}
-                    customerId={customerId}
-                    name={name}
+                    customerID={customerID}
+                    name={customerName}
                 />
                 <div className="flex-1 flex flex-col min-h-screen bg-gradient-to-r from-blue-100 to-blue-200 p-8">
                     <div className="p-6 bg-white shadow-lg rounded-lg transform transition duration-500">
                         <h1 className="text-4xl font-extrabold mb-6 text-gray-800 animate-fadeInDown">
-                            Welcome, {name}
+                            Welcome, {customerName}
                         </h1>
-                        <p className="text-gray-600">Customer ID: {customerId}</p>
+                        <p className="text-gray-600">Customer ID: {customerID}</p>
                     </div>
                     <CustomerHomeOffers />
                 </div>

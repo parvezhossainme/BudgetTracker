@@ -83,8 +83,8 @@ const SellerSideBar = ({ isCollapsed, toggleCollapse }) => {
     }, []);
 
     const handleLogout = () => {
-        localStorage.removeItem("sellerId");
-        localStorage.removeItem("name");
+        localStorage.removeItem("sellerID");
+        localStorage.removeItem("sellerName");
         navigate("/");
     };
 

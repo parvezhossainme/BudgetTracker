@@ -24,10 +24,26 @@ const CustomerSideBar = ({ isCollapsed, toggleCollapse }) => {
         navigate("/customer-favourite-shops");
     };
 
+    const handleStatementClick = () => {
+        navigate("/customer-statement");
+    };
+
     const handleLogout = () => {
-        localStorage.removeItem("customerId");
-        localStorage.removeItem("name");
-        navigate('/');
+        console.log(
+            "logout 1 :" +
+                localStorage.getItem(
+                    "customerID" + "  " + localStorage.getItem("customerName")
+                )
+        );
+        localStorage.removeItem("customerID");
+        localStorage.removeItem("customerName");
+        navigate("/");
+        console.log(
+            "logout 2:" +
+                localStorage.getItem(
+                    "customerID" + "  " + localStorage.getItem("customerName")
+                )
+        );
     };
 
     const sideBtn =
@@ -66,13 +82,20 @@ const CustomerSideBar = ({ isCollapsed, toggleCollapse }) => {
                     <i className="fas fa-money-bill-wave text-xl"></i>
                     {!isCollapsed && <span>Due</span>}
                 </li>
+
+                <li className={sideBtn} onClick={handleStatementClick}>
+                    <i className="fas fa-file-invoice-dollar text-xl"></i>
+                    {!isCollapsed && <span>Statement</span>}
+                </li>
                 <li className={sideBtn} onClick={handleFavouriteShopsClick}>
                     <i className="fas fa-heart text-xl"></i>
                     {!isCollapsed && <span>Favourite Shops</span>}
                 </li>
             </ul>
             <div className="mt-auto">
-                <button className="flex items-center space-x-2 px-4 py-2 bg-gray-700 rounded text-white hover:bg-gray-600 w-full" onClick={handleLogout}>
+                <button
+                    className="flex items-center space-x-2 px-4 py-2 bg-gray-700 rounded text-white hover:bg-gray-600 w-full"
+                    onClick={handleLogout}>
                     <i className="fas fa-sign-out-alt text-xl"></i>
                     {!isCollapsed && <span>Logout</span>}
                 </button>

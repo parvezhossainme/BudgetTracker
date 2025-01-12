@@ -60,9 +60,9 @@ const SellerNavbar = () => {
     const navigate = useNavigate();
 
     const handleHomeClick = () => {
-        const sellerId = localStorage.getItem("sellerId");
+        const sellerID = localStorage.getItem("sellerID");
         const name = localStorage.getItem("name");
-        console.log("Navigating to home with:", { sellerId, name }); // Debugging line
+        console.log("Navigating to home with:", { sellerID, name }); // Debugging line
         navigate("/seller-home");
     };
 

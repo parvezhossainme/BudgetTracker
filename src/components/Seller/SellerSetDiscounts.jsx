@@ -10,19 +10,19 @@ const SellerSetDiscounts = () => {
 
     const location = useLocation();
     const locationState = location.state || {};
-    const { sellerId: locationSellerId, name: locationName } = locationState;
+    const { sellerID: locationSellerId, name: locationName } = locationState;
 
     useEffect(() => {
         if (locationSellerId && locationName) {
-            localStorage.setItem("sellerId", locationSellerId);
+            localStorage.setItem("sellerID", locationSellerId);
             localStorage.setItem("name", locationName);
         }
     }, [locationSellerId, locationName]);
 
-    const sellerId = localStorage.getItem("sellerId") || "Unknown";
+    const sellerID = localStorage.getItem("sellerID") || "Unknown";
     const name = localStorage.getItem("name") || "Seller";
 
-    console.log("SellerSetDiscounts received:", { sellerId, name }); // Debugging line
+    console.log("SellerSetDiscounts received:", { sellerID, name }); // Debugging line
 
     const [productCategory, setProductCategory] = useState('');
     const [productId, setProductId] = useState('');

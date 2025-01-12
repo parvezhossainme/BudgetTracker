@@ -8,11 +8,11 @@ const CustomerProfile = () => {
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
     const [name, setName] = useState('');
-    const [customerId, setCustomerId] = useState('');
+    const [customerID, setCustomerId] = useState('');
 
     useEffect(() => {
         const storedName = localStorage.getItem('name');
-        const storedCustomerId = localStorage.getItem('customerId');
+        const storedCustomerId = localStorage.getItem('customerID');
         setName(storedName || 'Customer');
         setCustomerId(storedCustomerId || 'Unknown');
     }, []);
@@ -39,7 +39,7 @@ const CustomerProfile = () => {
                         <div className="bg-gray-100 p-6 rounded-lg shadow-md">
                             <h2 className="text-xl font-semibold mb-4">Personal Information</h2>
                             <p className="text-gray-700"><strong>Name:</strong> {name}</p>
-                            <p className="text-gray-700"><strong>Customer ID:</strong> {customerId}</p>
+                            <p className="text-gray-700"><strong>Customer ID:</strong> {customerID}</p>
                             <p className="text-gray-700"><strong>Gender:</strong> Male</p>
                             <p className="text-gray-700"><strong>Date of Birth:</strong> January 1, 1990</p>
                         </div>

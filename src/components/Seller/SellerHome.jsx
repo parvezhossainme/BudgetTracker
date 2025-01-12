@@ -5,16 +5,17 @@ import SellerFooter from "./SellerFooter";
 import SellerSideBar from "./SellerSideBar.jsx";
 
 const Sell = () => {
-    const sellerId = localStorage.getItem("sellerId") || "Unknown";
-    const name = localStorage.getItem("name") || "Seller";
-
+    const sellerID = localStorage.getItem("sellerID") || "Unknown";
+    console.log("From sell: " + sellerID);
+    const sellerName = localStorage.getItem("sellerName") || "Seller";
+    console.log("From sell: " + sellerName);
     return (
         <div className="p-6 bg-white shadow rounded-lg">
             <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="bg-blue-100 p-6 rounded-lg shadow-lg">
-                    <h2 className="text-lg font-semibold">Welcome, {name}</h2>
-                    <p className="text-gray-600">Seller ID: {sellerId}</p>
+                    <h2 className="text-lg font-semibold">Welcome, {sellerName}</h2>
+                    <p className="text-gray-600">Seller ID: {sellerID}</p>
                 </div>
                 <div className="bg-green-100 p-6 rounded-lg shadow-lg">
                     <h2 className="text-lg font-semibold">Total Sales</h2>
@@ -84,76 +85,6 @@ const NotificationsAlerts = () => (
     </div>
 );
 
-// const Sidebar = ({ isCollapsed, toggleCollapse}) => {
-//     const navigate = useNavigate();
-
-//     const handleDashboardClick = () => {
-//         navigate("/seller-home");
-//     };
-//     const handleLogout = () => {
-//         navigate('/');
-//     };
-
-//     const sideBtn = "flex items-center space-x-2 px-4 py-2 hover:bg-white hover:text-gray-800 px-4 py-2 rounded cursor-pointer w-full";
-
-//     return (
-//         <div
-//             className={`bg-[#2E5077] text-white ${
-//                 isCollapsed ? "w-20" : "w-52"
-//             } min-h-screen p-4 space-y-8 transition-all duration-300 flex flex-col items-center`}>
-//             <button
-//                 onClick={toggleCollapse}
-//                 className="text-white mb-4 flex items-center justify-center">
-//                 <i
-//                     className={`fas ${
-//                         isCollapsed ? "fa-chevron-right" : "fa-chevron-left"
-//                     } text-2xl`}></i>
-//             </button>
-//             <ul
-//                 className={`space-y-7 flex flex-col ${
-//                     isCollapsed ? "items-center justify-center" : "items-start"
-//                 }`}>
-//                 <li
-//                     className={sideBtn}
-//                     onClick={handleDashboardClick}>
-//                     <i className="fas fa-home text-xl"></i>
-//                     {!isCollapsed && <span>Dashboard</span>}
-//                 </li>
-//                 <li className={sideBtn}>
-//                     <i className="fas fa-box text-xl"></i>
-//                     {!isCollapsed && <span>Products</span>}
-//                 </li>
-//                 <li className={sideBtn}>
-//                     <i className="fas fa-shopping-cart text-xl"></i>
-//                     {!isCollapsed && <span>Orders</span>}
-//                 </li>
-//                 <li className={sideBtn}>
-//                     <i className="fas fa-money-bill-wave text-xl"></i>
-//                     {!isCollapsed && <span>Payments</span>}
-//                 </li>
-//                 <li className={sideBtn}>
-//                     <i className="fas fa-envelope text-xl"></i>
-//                     {!isCollapsed && <span>Messages</span>}
-//                 </li>
-//                 <li className={sideBtn}>
-//                     <i className="fas fa-cog text-xl"></i>
-//                     {!isCollapsed && <span>Settings</span>}
-//                 </li>
-//                 <li className={sideBtn}>
-//                     <i className="fas fa-percentage text-xl"></i>
-//                     {!isCollapsed && <span>Set Discounts</span>}
-//                 </li>
-//             </ul>
-//             <div className="mt-auto" onClick={handleLogout}>
-//                 <button className="flex items-center space-x-2 px-4 py-2 bg-gray-700 rounded text-white hover:bg-gray-600">
-//                     <i className="fas fa-sign-out-alt text-xl"></i>
-//                     {!isCollapsed && <span>Logout</span>}
-//                 </button>
-//             </div>
-//         </div>
-//     );
-// };
-
 
 const SellerHome = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -161,19 +92,19 @@ const SellerHome = () => {
 
     const location = useLocation();
     const locationState = location.state || {};
-    const { sellerId: locationSellerId, name: locationName } = locationState;
+    const { sellerID: locationsellerID, name: locationsellerName } = locationState;
 
     useEffect(() => {
-        if (locationSellerId && locationName) {
-            localStorage.setItem("sellerId", locationSellerId);
-            localStorage.setItem("name", locationName);
+        if (locationsellerID && locationsellerName) {
+            localStorage.setItem("sellerID", locationsellerID);
+            localStorage.setItem("sellerName", locationsellerName);
         }
-    }, [locationSellerId, locationName]);
+    }, [locationsellerID, locationsellerName]);
 
-    const sellerId = localStorage.getItem("sellerId") || "Unknown";
-    const name = localStorage.getItem("name") || "Seller";
+    const sellerID = localStorage.getItem("sellerID") || "Unknown";
+    const sellerName = localStorage.getItem("sellerName") || "Seller";
 
-    console.log("SellerHome received:", { sellerId, name }); // Debugging line
+    console.log("SellerHome received:", { sellerID, sellerName }); // Debugging line
 
     return (
         <>

@@ -10,19 +10,19 @@ const SellerMessages = () => {
 
     const location = useLocation();
     const locationState = location.state || {};
-    const { sellerId: locationSellerId, name: locationName } = locationState;
+    const { sellerID: locationSellerId, name: locationName } = locationState;
 
     useEffect(() => {
         if (locationSellerId && locationName) {
-            localStorage.setItem("sellerId", locationSellerId);
+            localStorage.setItem("sellerID", locationSellerId);
             localStorage.setItem("name", locationName);
         }
     }, [locationSellerId, locationName]);
 
-    const sellerId = localStorage.getItem("sellerId") || "Unknown";
+    const sellerID = localStorage.getItem("sellerID") || "Unknown";
     const name = localStorage.getItem("name") || "Seller";
 
-    console.log("SellerMessages received:", { sellerId, name }); // Debugging line
+    console.log("SellerMessages received:", { sellerID, name }); // Debugging line
 
     const [selectedConversation, setSelectedConversation] = useState(null);
     const [conversations, setConversations] = useState([
@@ -128,19 +128,19 @@ export default SellerMessages;
 
 //     const location = useLocation();
 //     const locationState = location.state || {};
-//     const { sellerId: locationSellerId, name: locationName } = locationState;
+//     const { sellerID: locationSellerId, name: locationName } = locationState;
 
 //     useEffect(() => {
 //         if (locationSellerId && locationName) {
-//             localStorage.setItem("sellerId", locationSellerId);
+//             localStorage.setItem("sellerID", locationSellerId);
 //             localStorage.setItem("name", locationName);
 //         }
 //     }, [locationSellerId, locationName]);
 
-//     const sellerId = localStorage.getItem("sellerId") || "Unknown";
+//     const sellerID = localStorage.getItem("sellerID") || "Unknown";
 //     const name = localStorage.getItem("name") || "Seller";
 
-//     console.log("SellerMessages received:", { sellerId, name }); // Debugging line
+//     console.log("SellerMessages received:", { sellerID, name }); // Debugging line
 
 //     return (
 //         <>
